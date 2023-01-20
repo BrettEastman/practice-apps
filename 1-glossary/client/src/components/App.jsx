@@ -4,47 +4,60 @@ import AddWord from './AddWord.jsx';
 import WordList from './WordList.jsx';
 
 export const App = () => {
-  const [ words, setWords ] = useState([{_id: 1, word: "karyotype", definition: "the chromosomes of a cell, usually displayed as a systematized arrangement of chromosome pairs in descending order of size."}, {_id: 2, word: "eye-rhyme", definition: "a rhyme involving words that are similar in spelling but not in sound, such as stone and none."}]);
+  const [ words, setWords ] = useState([]);
 
-  // const getWords = function() => {
-  //   axios.get('/words')
-  // }
+  const getWords = () => {
+    return axios.get('/words')
+  };
 
-  // useEffect(() => {
-  //   getWords()
-  //     .then(({ data }) => {
-  //       setWords(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     });
-  // }, []);
+  const fetchWords = function() {
+    getWords()
+      .then(({ data }) => {
+        setWords(data);
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+  };
 
-  // const postWord = function(word, definition) {
-  //   axios.post('/words', {
-  //     word: word,
-  //     definition: definition
-  //   })
-  //   .then(function (res) {
-  //     getWords()
-  //       .then(({ data }) => {
-  //         setWords(data);
-  //       }).catch((err) => {
-  //         console.log(err);
-  //       });
-  //   })
-  //   .catch(function (err) {
-  //     console.log(err);
-  //   });
-  // }
+  useEffect(() => {
+    fetchWords()
+  }, []);
+
+  const postWord = function(obj) {
+    axios({
+      method: 'post',
+      url: '/words',
+      data: obj
+    })
+    .then(function (res) {
+      fetchWords()
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  };
+
+  const deleteWord = function(id) {
+    axios({
+      method: 'delete',
+      url: `words/${id}`
+    })
+    .then(function (res) {
+      fetchWords()
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+  };
 
   return (
     <div>
       <div>
-        <div><AddWord/></div>
+        <div><AddWord handleAdd={postWord}/></div>
       </div>
       <div>
-        <div><WordList words={words}/></div>
+        <div><WordList words={words} handleDelete={deleteWord}/></div>
       </div>
     </div>
   );
