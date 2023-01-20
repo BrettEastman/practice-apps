@@ -4,6 +4,11 @@ const AddWord = ({ handleAdd }) => {
   const [wordInput, setWordInput] = useState('');
   const [defInput, setDefInput] = useState('');
 
+  const onAddClick = (e) => {
+    e.preventDefault();
+    handleAdd({word: wordInput, definition: defInput})
+  }
+
   return (
     <form>
       <input
@@ -15,10 +20,10 @@ const AddWord = ({ handleAdd }) => {
       <input
         type="text"
         placeholder="Add definition here"
-        onChange={(e) => setDefInput(e.target.value)}
+        onChange={(e) => {setDefInput(e.target.value)}}
         value={defInput}>
       </input>
-      <button onClick={() => {handleAdd({word: wordInput, definition: defInput})}}>Add Word</button>
+      <button onClick={onAddClick}>Add Word</button>
     </form>
   );
 };

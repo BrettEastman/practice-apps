@@ -12,7 +12,7 @@ export const App = () => {
 
   const fetchWords = function() {
     getWords()
-      .then(({ data }) => {
+      .then(({ data }) => { //data is from the getWords axios promise
         setWords(data);
       })
       .catch((err) => {
@@ -25,6 +25,7 @@ export const App = () => {
   }, []);
 
   const postWord = function(obj) {
+
     axios({
       method: 'post',
       url: '/words',
