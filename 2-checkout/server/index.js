@@ -29,8 +29,8 @@ app.get('/checkout', function(req, res) {
 });
 
 app.post('/checkout', function(req, res) {
+  // console.log('req.body: ', req.body);
   let data = {...req.body, session_id: req.session_id}
-  console.log(data);
   save(data, (err, result) => {
     if (err) {
       console.log(err);

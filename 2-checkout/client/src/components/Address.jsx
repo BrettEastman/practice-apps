@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const UserInfo = ({ handleState }) => {
+const Address = ({ handleState, handleInput }) => {
   return (
     <div>
       <form>
@@ -21,4 +21,4 @@ const UserInfo = ({ handleState }) => {
   )
 };
 
-export default UserInfo;
+export default Address;

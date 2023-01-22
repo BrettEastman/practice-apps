@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CcInfo = ({ handleState }) => {
+const Billing = ({ handleState, handleInput }) => {
   return (
     <div>
       <form>
@@ -14,9 +14,9 @@ const CcInfo = ({ handleState }) => {
           <input type="text" placeholder="Billing Zip Code"></input>
         </div>
       </form>
-      <button onClick={() => handleState(0)}>Purchase</button>
+      <button onClick={() => handleState(3)}>Next</button>
     </div>
   )
 };
 
-export default CcInfo;
+export default Billing;
