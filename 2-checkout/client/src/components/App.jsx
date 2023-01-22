@@ -7,16 +7,16 @@ import axios from 'axios';
 
 const App = () => {
 
-  const [formState, setFormState] = useState(2);
+  const [formState, setFormState] = useState(0);
   const [customer, setCustomer] = useState({});
   const [address, setAddress] = useState({});
   const [billing, setBilling] = useState({});
 
   const submitData = () => {
-    // let input = {...customer, ...address, ...billing}
-    let input = {cust_name:"absolutely Real", email:"absolutelyreal@gmail.com", pw:"absolutelyrealpw", address:"1234 absolutely Real Blvd, SF, CA", zipcode:94134, phone:8675309, cc:1231221345235, exp:"0405", cvv:898, zipcode_bill:94134, session_id:"lkj2523l5kj2" };
+    let input = {...customer, ...address, ...billing};
+    // let input = {cust_name:"absolutely Real", email:"absolutelyreal@gmail.com", pw:"absolutelyrealpw", address:"1234 absolutely Real Blvd, SF, CA", zipcode:94134, phone:8675309, cc:1231221345235, exp:"0405", cvv:898, zipcode_bill:94134, session_id:"lkj2523l5kj2" };
 
-    console.log(input);
+    console.log('input from submitData: ', input);
 
     axios({
       method: 'post',
@@ -34,12 +34,12 @@ const App = () => {
 
   return (
     <div>
-      {/* <div>
+      <div>
         {formState === 0 && (<Customer handleState={setFormState} handleInput={setCustomer}/>)}
       </div>
       <div>
         {formState === 1 && (<Address handleState={setFormState} handleInput={setAddress}/>)}
-      </div> */}
+      </div>
       <div>
         {formState === 2 && (<Billing handleState={setFormState} handleInput={setBilling}/>)}
       </div>
